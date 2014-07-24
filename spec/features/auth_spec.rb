@@ -16,4 +16,14 @@ feature 'Auth' do
     expect(page).to have_content("user@example.com")
   end
 
+  scenario 'User must enter an email upon registration' do
+    visit root_path
+    click_on 'Register'
+    fill_in 'Name', :with => 'Person'
+    fill_in 'Password', :with => 'password'
+    fill_in 'Confirm', :with => 'password'
+    click_button 'Register'
+    expect(page).to have_content("Email can't be blank")
+  end
+
 end
